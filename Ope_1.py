@@ -3,3 +3,11 @@ from MODULOS.MODULOS_MATEMATICOS.OPERACIONES_COMPLEJAS.OpeComplejas import *
 
 
 print(resta())
+
+print(suma())
+
+
+print(Potencia())
+
+
+

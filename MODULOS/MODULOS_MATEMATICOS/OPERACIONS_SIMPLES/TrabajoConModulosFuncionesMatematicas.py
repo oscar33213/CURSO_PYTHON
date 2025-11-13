@@ -19,16 +19,17 @@ def multiplicacion():
     return f"El resultado de la multiplicación entre {num1} y {num2} es: {num1 * num2}."
 
 def division():
-    num1 = float(input("Indica primer valor: "))
-    num2 = float(input("Indica segundo valor: "))
-    
-    while num1 <= 0 or num2 <= 0:
-        print("No se puede dividir por 0 o valores negativos")
+    try:
         num1 = float(input("Indica primer valor: "))
         num2 = float(input("Indica segundo valor: "))
         
-    return f"El resultado de la division entre {num1} y {num2} es: {num1 / num2}."
+        resultado = num1 / num2
+        return f"El resultado de dividir {num1} entre {num2} es: {resultado}"
 
+    except ValueError:
+        return "Entrada no válida. Debes introducir números."
+    except ZeroDivisionError:
+        return "No se puede dividir entre 0."
 
 
 
