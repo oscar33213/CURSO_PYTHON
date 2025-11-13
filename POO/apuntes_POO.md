@@ -21,7 +21,17 @@
 ### 🧱 Clase
 
 - Modelo donde se redactan las características comunes del objeto.  
-- **Ejemplo:** Chasis o plataforma de un coche.
+- **Ejemplo:** de construccion de clase
+
+``` python
+class Coche:
+  __init__(self, color, tamaño)
+    self.color = color
+    self.tamaño = tamaño
+  def getinfo(self)
+    return f"\nColor: {self.color}\nTamaño: {self.tamaño}
+
+```
 
 ---
 
@@ -45,6 +55,15 @@
     - Frenar  
     - Girar  
 
+- Ejemplo de Instancia:
+
+```python
+
+coche1 = Coche()
+print(coche1.getinfo())
+
+```
+
 ---
 
 ### 🧩 Modularización
@@ -60,6 +79,18 @@
 - Consiste en **encapsular o proteger información** dentro del objeto.  
 - **Ejemplo (Coche):** Las piezas ocultas debajo del coche —a las que solo accede el mecánico— son parte del sistema, pero un usuario normal no puede modificarlas.  
 - En programación, esto se traduce en **partes del código que no son accesibles para cualquiera**, solo para el programador o mediante métodos específicos.
+- Ejemplo de Encapsulación
+
+```python
+
+class Coche:
+  _color = ""
+  _tamaño = ""
+  __init__(self, color, tamaño)
+    self._color = color
+    self._tamaño = tamaño
+
+```
 
 ---
 
@@ -80,6 +111,21 @@
 - Sirve para la **reutilización de código** en caso de crear objetos similares.  
 - Una clase **hereda solo de la clase padre**.
 - Las clases que se encuentran mas abajo **son las mas potentes**.
+- Ejempo de herencia:
+
+```python
+class Coche:
+  def __init__(self, color, tamaño)
+    self.color = color
+    self.tamaño = tamaño
+  def getinfo(self)
+    return f"\nColor: {self.color}\nTamaño: {self.tamaño}
+
+class Moto (Coche):
+  def __init__(self, color, tamaño, isAutomatica)
+    super().__init__(self, color, tamaño)
+
+```
 
 ---
 
@@ -99,4 +145,4 @@ def hazlosHablar(lista):
 
 
 - En este ejemplo es **persona** quien va variando 
-- 
+ 
