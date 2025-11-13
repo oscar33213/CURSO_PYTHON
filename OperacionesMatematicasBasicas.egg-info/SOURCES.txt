@@ -1,0 +1,5 @@
+setup.py
+OperacionesMatematicasBasicas.egg-info/PKG-INFO
+OperacionesMatematicasBasicas.egg-info/SOURCES.txt
+OperacionesMatematicasBasicas.egg-info/dependency_links.txt
+OperacionesMatematicasBasicas.egg-info/top_level.txt

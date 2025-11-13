@@ -1,0 +1,44 @@
+class Persona ():
+    nombre = ""
+    apellido = ""
+    edad = 0
+    genero = "No definido"
+    
+    #CONSTRUCTOR
+
+    #ES EL ESTADO INICIAL QUE SE LE DA A UNA INSTANCIA DE UNA CLASE
+
+
+    
+    #CREACION DE UN CONSTRUCTOR
+    def __init__(self, nombre, apellido, edad, genero):
+       self.nombre = nombre
+       self.apellido = apellido
+       self.edad = edad
+       self.genero = genero
+    
+    def habla(self):
+        return self.nombre + " esta hablando"
+    
+    def camina (self):
+        return self.nombre + " esta caminando"
+    
+    
+    def getDatos (self):
+        return "Nombre: " + self.nombre +" Apellido: " + self.apellido + \
+         " Edad: " + str(self.edad) + " Genero: " + self.genero
+            
+            
+
+
+persona1 = Persona("Oscar", "Hidalgo", 28, "Masculino") #SE COLOCAN EN EL PARENTESIS LOS PARAMETROS QUE TIENE QUE RECIBIR EL CONSTRUCTOR
+
+persona2 = Persona("Miriam", "Gil", 26, "Femenino")
+
+print(persona1.getDatos())
+print(persona2.getDatos())
+
+print(persona2.camina())
+
+
+
