@@ -56,8 +56,6 @@ pip install nombre_del_paquete.tar.gz
 ## ACTUALIZACIÓN DE UN PAQUETE .tar
 
 - En el **setup.py** añadimos la nueva versión
-- Navegamos hasta la carpeta /dist y lo actualizamos con: **'pip install -- update nombre_del_paquete'**
-- En la consola creamos otro paquete distribuible con
 
 ```bash
 python setup.py sdist
