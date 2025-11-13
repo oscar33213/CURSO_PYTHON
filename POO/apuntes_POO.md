@@ -25,9 +25,11 @@
 
 ``` python
 class Coche:
+  #Constructor o setter
   __init__(self, color, tamaño)
     self.color = color
     self.tamaño = tamaño
+  #Metodo
   def getinfo(self)
     return f"\nColor: {self.color}\nTamaño: {self.tamaño}
 
@@ -59,7 +61,7 @@ class Coche:
 
 ```python
 
-coche1 = Coche()
+coche1 = Coche("Color", 123)
 print(coche1.getinfo())
 
 ```
