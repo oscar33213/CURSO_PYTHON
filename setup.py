@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="OperacionesMatematicasBasicas",
-    version="0.1.0",
+    version="0.1.1",
     description="Paquete para realizar operaciones matemáticas básicas y complejas",
     author="Óscar Hidalgo Llopez©",
     author_email="oshill146@gmail.com",
