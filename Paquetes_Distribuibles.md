@@ -28,20 +28,49 @@ setup(
 
 ## INSTALACIÓN DE UN PAQUETE .tar
 
+- Creamos el paquete y la carpeta **dist**
+
+```bash
+python setup.py sdist
+```
+
 - Entramos en el directorio donde tengamos el paquete (con cmd)
-- Instalamos pip (si no lo tenemois instalado con: **'python.exe -m pip install --upgrade pip'**)
-- Una vez instalado, instalamos el paquete con el siguiente comando:  **'pip install nombre_del_paquete'**
-- Ejemplo:
 
 ```bash
 
-python setup.py sdist
 cd dist
+```
+
+- Instalamos pip (si no lo tenemos instalado) con:  
+
+```bash
+python.exe -m pip install --upgrade pip
+```
+
+- Instalamos el paquete
+
+```bash
 pip install nombre_del_paquete.tar.gz
 ```
 
 ## ACTUALIZACIÓN DE UN PAQUETE .tar
 
 - En el **setup.py** añadimos la nueva versión
-- En la consola creamos otro paquete distribuible con **python setup.py sdist**
 - Navegamos hasta la carpeta /dist y lo actualizamos con: **'pip install -- update nombre_del_paquete'**
+- En la consola creamos otro paquete distribuible con
+
+```bash
+python setup.py sdist
+```
+
+- Navegamos hasta la carpeta /dist
+
+```bash
+cd dist
+```
+
+- Actualizamos el paquete:
+
+```bash
+pip install -- update nombre_del_paquete
+```
