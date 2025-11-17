@@ -355,9 +355,4 @@ with open('listasPosts.csv', 'r', newline='', encoding= 'utf-8') as csvfile:
     
     for posts in postreader:
         print(', '.join(posts))
-        
-        
-        
-    
-        
 ```
