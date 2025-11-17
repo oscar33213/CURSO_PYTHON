@@ -152,3 +152,118 @@ print(result[4])
 print(result[2].text)
 
 ```
+
+## POO Crawler
+
+- Uso de Crawler y BeatifulSoup con POO:
+
+```python
+
+import requests
+from bs4 import BeautifulSoup
+
+class CrawlerPost:
+    def __init__(self, emoji, title, text, img):
+        
+        self.emote = emoji
+        self.titulo = title
+        self.texto = text
+        self.imagen = img
+
+
+
+class ExtratPost ():
+    def extraerInfo(self):
+        miDoc = requests.get('https://python.beispiel.programmierenlernen.io/')
+        docFinal = BeautifulSoup(miDoc.text, 'html.parser')
+        posts = []
+        
+        for card in docFinal.select('.card'):
+            titulo = card.select('.card-title span')[1].text
+            emoticono = card.select_one('.emoji').text  
+            texto = card.select_one('.card-text').text 
+            imagen = card.select_one('img').attrs       
+            
+            crawled = CrawlerPost(emoticono, titulo, texto, imagen) 
+            posts.append(crawled)
+            
+        return posts
+    
+    
+    
+unPost = ExtratPost()
+listaPost = unPost.extraerInfo()
+for elPost in listaPost:
+    print(elPost.emote)
+    print(elPost.titulo)
+    print(elPost.texto)
+    print(elPost.imagen)
+    print()
+
+```
+
+## Libreria urllib
+
+- Sirve para obtener la ruta absoluta de una imagen
+
+```python
+
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin
+
+class CrawlerPost:
+    def __init__(self, emoji, title, text, img):
+        self.emote = emoji
+        self.titulo = title
+        self.texto = text
+        self.imagen = img
+
+class ExtratPost:
+    def extraerInfo(self):
+        urlAbsoluta = 'https://python.beispiel.programmierenlernen.io/' #DONDE SE ALMACENA LA URL_BASE
+        miDoc = requests.get(urlAbsoluta)
+        docFinal = BeautifulSoup(miDoc.text, 'html.parser')
+        posts = []
+        
+        for card in docFinal.select('.card'):
+            titulo = card.select('.card-title span')[1].text
+            emoticono = card.select_one('.emoji').text  
+            texto = card.select_one('.card-text').text 
+            imagen = urljoin(urlAbsoluta, card.select_one('img')['src']) #urljoin, extarera la ruta absoluta
+            
+            crawled = CrawlerPost(emoticono, titulo, texto, imagen) 
+            posts.append(crawled)
+            
+        return posts
+
+unPost = ExtratPost()
+listaPost = unPost.extraerInfo()
+
+for elPost in listaPost:
+    print(elPost.emote)
+    print(elPost.titulo)
+    print(elPost.texto)
+    print(elPost.imagen)
+    print()
+
+
+```
+
+## Archivos CSV
+
+- Un CSV en un documneto contenedor de grandes volumenes de información
+- En este ejemplo, se crea un .csv a partir del objeto ***post*** del ejemplo de arriba
+
+```python
+
+import csv
+
+with open('listasPosts.csv', 'w', newline='', encoding= 'utf-8') as csvfile:
+    postwriter = csv.writer(csvfile, delimiter=' ',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    
+    for miPost in unPost.extraerInfo():
+        postwriter.writerow([miPost.emote, miPost.titulo, miPost.texto, miPost.imagen])
+    
+```
