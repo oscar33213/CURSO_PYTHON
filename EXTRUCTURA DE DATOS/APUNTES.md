@@ -43,7 +43,7 @@ print(planetas)
 ### ***Colas o Queues***
 
 - Existen **tres** tipos de colas
-  - FIFO (**F**IRST **I**N**F**IRST **O**UT)
+  - FIFO (***F*** IRST ***I*** N ***F*** IRST ***O*** UT)
 
 ```python
   import queue
@@ -53,7 +53,7 @@ miCola.put("Barcelona")
 miCola.put("Valencia")
 ```
 
-- LIFO (**L**AST **I**N **F**IRST **O**UT)
+- LIFO (***L*** AST ***I*** N ***F*** IRST ***O*** UT)
 
 ```python
 miCola_2 = queue.LifoQueue()
@@ -85,7 +85,7 @@ for elemento in miCola_3.queue:
 
 - La clase **queue** cuenta con diferentes metodos:
   - *qsize()*
-  - ***empty()*
+  - *empty()*
   - *full()*
   - *put()*
   - *put_nowait()*
