@@ -356,3 +356,23 @@ with open('listasPosts.csv', 'r', newline='', encoding= 'utf-8') as csvfile:
     for posts in postreader:
         print(', '.join(posts))
 ```
+
+## GENERADORES CON CRAWLER
+
+- Podemos usar generadores para obtener información de una pagina
+- Este codigo es un ***fragmento*** donde se ve el uso de los **Generadores**
+
+```python
+
+for card in docFinal.select('.card'):
+                    titulo = card.select('.card-title span')[1].text
+                    emoticono = card.select_one('.emoji').text  
+                    texto = card.select_one('.card-text').text 
+                    imagen = urljoin(urlAbsoluta, card.select_one('img')['src'])
+                    
+                    #GENERADOR
+                    yield CrawlerPost(emoticono, titulo, texto, imagen)
+
+```
+
+- 'Hace referencia al codigo de arriba (## POO Crawler)'
