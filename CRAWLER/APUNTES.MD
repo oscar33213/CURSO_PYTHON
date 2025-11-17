@@ -252,6 +252,8 @@ for elPost in listaPost:
 
 ## Archivos CSV
 
+### Creación de CSV
+
 - Un CSV en un documneto contenedor de grandes volumenes de información
 - En este ejemplo, se crea un .csv a partir del objeto ***post*** del ejemplo de arriba
 
@@ -337,4 +339,25 @@ with open('listasPosts.csv', 'w', newline='', encoding= 'utf-8') as csvfile:
         
         
 
+```
+
+### Lectura del CSV
+
+- Este codigo, leera la información dentro de un **CSV**
+
+```python
+
+import csv
+
+with open('listasPosts.csv', 'r', newline='', encoding= 'utf-8') as csvfile:
+    postreader = csv.reader(csvfile, delimiter=';', 
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    
+    for posts in postreader:
+        print(', '.join(posts))
+        
+        
+        
+    
+        
 ```
