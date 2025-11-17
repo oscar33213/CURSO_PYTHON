@@ -260,7 +260,7 @@ for elPost in listaPost:
 import csv
 
 with open('listasPosts.csv', 'w', newline='', encoding= 'utf-8') as csvfile:
-    postwriter = csv.writer(csvfile, delimiter=' ',
+    postwriter = csv.writer(csvfile, delimiter=';', #ESTE DELIMITADOR TRANSFORMA A COLUMNA UNA VEZ SE USE
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
     
     for miPost in unPost.extraerInfo():
