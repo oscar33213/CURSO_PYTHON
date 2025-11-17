@@ -375,4 +375,4 @@ for card in docFinal.select('.card'):
 
 ```
 
-- 'Hace referencia al codigo de arriba (## POO Crawler)'
+- 'Hace referencia al codigo de arriba ([## POO Crawler] (#poo-crawler))'
