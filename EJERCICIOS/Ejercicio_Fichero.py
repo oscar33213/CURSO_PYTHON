@@ -27,4 +27,4 @@ if os.path.exists(directorioActual):
             .format(c['Codigo'], c['Nombre'], c['Dirección'], c['Población'], c['Telefono'], c['Responsable']))
 
 else:
-    print('Ruta no encontrada')
+    os.mkdir(directorioActual)
