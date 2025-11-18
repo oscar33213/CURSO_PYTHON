@@ -149,3 +149,5 @@ archivo_creado.close()
 
 
 ```
+
+## DIRECTORIOS
