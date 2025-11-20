@@ -145,7 +145,7 @@ from tkinter import *
 
 root = Tk()
 miFrame.pack(fill='both', expand= 1)
-LabelTxt = Label(miFrame, text='Eres mu tonto', font='Arial', anchor='center', fg='blue' )
+LabelTxt = Label(miFrame, text='...', font=('Arial'), 20, anchor='center', fg='blue' )
 LabelTxt.place(x = 10, y = 125)
 raiz.mainloop()
 
