@@ -221,3 +221,94 @@ miLabel3.grid(row=2, column=0, sticky='w')
 ```
 
 - En este codigo se crea un aplicacion con 3 entradas de texto
+
+### PADDING
+
+- Separación entre el elemento y su contenedor
+
+```python
+
+cuadroTexto.grid(row=0, column=1, padx=150, pady=5)
+
+```
+
+### Ocultar Caracteres
+
+```python
+
+paswdCuadro.config(show='*')
+
+```
+
+### Cuadro de Texto
+
+```python
+
+#Input
+CuadroAboutYou = Text(miFrame, width=15, height=8)
+CuadroAboutYou.grid(row=1, column=1)
+
+#Label
+LabelCajaTexto = Label(miFrame, text='Sobre ti: ')
+LabelCajaTexto.grid(row=1, column=0)
+
+```
+
+### BOTÓN
+
+```python
+
+BotonEnviar = Button(miFrame, text='Enviar', width=17)
+BotonEnviar.grid(row=2, column=1, pady=5)
+
+```
+
+- El Botón se puede situar en la raiz
+
+```python
+
+BotonRaiz = Button(root, text='Send')
+
+```
+
+- Para hacer que un boton funcione se hace de la siguiente manera:
+
+```python
+
+def funcionBoton():
+   pass
+
+BotonEnviar = Button(miFrame, text='Enviar', width=17, command=funcionBoton) #OJO! Se pasa como argumento, no se inicializa
+BotonEnviar.grid(row=2, column=1, pady=5)
+
+```
+
+- Para hacer que capture un cuadro de texto se realiza d ela siguiente manera:
+
+```python
+from tkinter import *
+from tkinter import messagebox as Messagebox
+
+miVariable = StringVar()
+paswdCuadro = Entry(miFrame, textvariable=miVariable)
+
+def funcionBoton():
+    valor = miVariable.get()
+    Messagebox.showinfo('Información' ,f'Contraseña: {valor}') #GET para capturar, SET para soltar
+
+BotonEnviar = Button(miFrame, text='Enviar', width=17, command=funcionBoton)
+BotonEnviar.grid(row=2, column=1, pady=5)
+
+```
+
+### BARRA DE DESPLAZAMIENTO
+
+```python
+CuadroAboutYou = Text(miFrame, width=15, height=8)
+CuadroAboutYou.grid(row=1, column=1)
+
+BarraDesplazamiento = Scrollbar(miFrame, command=CuadroAboutYou.yview) #Nombrevariable = Scroll(ContenedroPadre, command=VariableALaQueAfecta.y/xview)
+BarraDesplazamiento.grid(row=1, column=2, sticky='nsew')
+CuadroAboutYou.config(yscrollcommand=BarraDesplazamiento.set)
+
+```

@@ -8,11 +8,11 @@ miFrame.config()
 
 #CREAR EL ENTRY
 cuadroTexto = Entry(miFrame)
-cuadroTexto.grid(row=0, column=1)
+cuadroTexto.grid(row=0, column=1, padx=10, pady=10)
 cuadro2 = Entry(miFrame)
-cuadro2.grid(row=1, column=1)
+cuadro2.grid(row=1, column=1, padx=10, pady=10)
 cuadro3 = Entry(miFrame)
-cuadro3.grid(row=2, column=1)
+cuadro3.grid(row=2, column=1, padx=10, pady=10)
 
 
 miLabel = Label(miFrame, text='Nombre: ')
