@@ -39,7 +39,7 @@ def funcionBoton():
     Messagebox.showinfo('Información' ,f'Contraseña: {valor}')
 
 BotonEnviar = Button(miFrame, text='Enviar', width=17, command=funcionBoton)
-BotonEnviar.grid(row=2, column=1, pady=5)
+BotonEnviar.grid(row=2, column=1, pady=6)
 
 
 
