@@ -283,7 +283,7 @@ BotonEnviar.grid(row=2, column=1, pady=5)
 
 ```
 
-- Para hacer que capture un cuadro de texto se realiza d ela siguiente manera:
+- Para hacer que capture un cuadro de texto se realiza de la siguiente manera:
 
 ```python
 from tkinter import *
