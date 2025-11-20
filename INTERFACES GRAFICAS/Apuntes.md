@@ -11,7 +11,7 @@
 
 - Tambien se denominan ***GUI*** (**G**RAFIC **U**SER **I**NTERFACE)
 - Son intermediadores entre el programa y el usuario
-- El usuario ve la parte de **botones**, **ventanas, **cuadros de texto** ***(El Front - End)***
+- El usuario ve la parte de **botones**, **ventanas**, **cuadros de texto** ***(El Front - End)***
 - El programa por detras ejecuta la **logica** ***(El Back - End)***
 - Se usan diferentes librerias, aunque la mas conocida es **Tkinter**
   - *WxPython*
