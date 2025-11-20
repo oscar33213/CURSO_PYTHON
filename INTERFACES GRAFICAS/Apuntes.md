@@ -129,7 +129,7 @@ miLabel = Label()
 - Como parametros podra recibir:
   - **Text**: Texto que se muestra en el label
   - **Anchor**: Controla la posicion del texto
-  - **Bg***: Color del fondo
+  - **Bg**: Color del fondo
   - **Bitmap**: Mapa de **bits** que se mostraran como grafico
   - **Bd**: Grosor del borde
   - **Font**: Tipo de fuente
