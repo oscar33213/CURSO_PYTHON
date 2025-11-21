@@ -209,3 +209,143 @@ for dominio in dominios:
   - **()**: **Agrupa patrones** y **captura su contenido**.
   - **'\'**: **Escapa metacaracteres** o introduce secuencias especiales **(\d, \w, etc.)**.
   - *etc...*
+
+### Rangos
+
+- Busca coincidencias que abarquen los rangos seleccionados
+
+```python
+
+import re
+#RANGOS
+lista_terminos = [
+    'Camión',
+    'Camion',
+    'Niños',
+    'Niñas',
+    'Ejemplo'
+]
+#Buscara las coincidencias entre las letras 'p' y 'z'
+for lista in lista_terminos:
+    if re.findall('[p-z]', lista.lower()):
+        print(lista)
+    else:
+        print('No hay coincidencias')
+
+```
+
+- Podemos hacer que busque rangos que empiecen por *n* caracter:
+
+```python
+import re
+
+lista_terminos = [
+    'Camión',
+    'Camion',
+    'Niños',
+    'Niñas',
+    'Ejemplo'
+]
+for lista in lista_terminos:
+    if re.findall('^[a-j]', lista.lower()):
+        print(lista)
+    else:
+        print('No hay coincidencias')
+
+
+```
+
+```python
+
+import re
+
+lista_productos = [
+        'Ma1',
+        'Se1',
+        'Ma2',
+        'Va1',
+        'Ca1',
+        'Ma3',
+        'Ma4',
+        'Se2']
+
+for producto in lista_productos:
+    if re.findall('Ma[1-3]', producto, re.IGNORECASE):
+        print(producto)
+    else:
+        print('No hay coincidencias')
+
+```
+
+- En este ejemplo busca un numero determinado de rango (del 1 al 3), ignorando cuantos mas hay
+- Tambien podemos buscar rangos entre letras y numeros:
+
+```python
+
+import re
+
+lista_productos = [
+        'Ma1',
+        'Se1',
+        'Ma2',
+        'Va1',
+        'Ca1',
+        'Ma3',
+        'Ma4',
+        'Se2',
+        'SeA',
+        'SeB',
+        'Va2',
+        'SeC']
+
+for producto in lista_productos:
+    if re.findall('Se[0-2A-B]', producto, re.IGNORECASE):
+        print(producto)
+    else:
+        print('No hay coincidencias')
+
+```
+
+### Funcion *match* $ *search*
+
+- **Match**: Realiza la busqueda al comienzo del termino donde se quere realizar la busqueda
+- **Search**: Realiza la busqueda en todo el *string*
+
+- Uso de *match*
+
+```python
+
+import re
+
+nombre1 = 'Lionel Messi'
+nombre2 = 'Kylian Mbappé'
+nombre3 = 'Zlatan Ibrahiovic'
+
+
+if re.match('Kylian', nombre1, re.IGNORECASE):
+    print(f'Esta en el 1º')
+elif re.match('Kylian', nombre2, re.IGNORECASE):
+    print('Esta en el 2º')
+elif re.match('Kylian', nombre3, re.IGNORECASE):
+    print('Esrta en el 3º')
+else:
+    print('No esta')
+
+```
+
+- Uso de *search*:
+
+```python
+
+import re
+
+nombre1 = 'Lionel Messi'
+nombre2 = 'Kylian Mbappé'
+nombre3 = 'Zlatan Ibrahiovic'
+
+if re.search('L', nombre1, re.IGNORECASE):
+    print(True, f'{nombre1}')
+else:
+    print(False)
+
+```
