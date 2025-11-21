@@ -1,6 +1,6 @@
 # 🐍 Curso de Python: De Básico a Avanzado
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
+![Python](https://img.shields.io/badge/Python-3.12.4-blue)
 ![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
