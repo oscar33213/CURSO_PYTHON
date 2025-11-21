@@ -135,6 +135,7 @@ for nombres in lista_nombres:
         print('No hay coincidencias')
 
 ```
+
 - Uso de **[]**
 
 ```python
