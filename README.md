@@ -75,5 +75,5 @@ Gracias por respetar las normas del repositorio y contribuir al aprendizaje de P
 
 ---
 
-**Autor:** Óscar Hidalgo
+**Autor:** Óscar Hidalgo Llopez
 
