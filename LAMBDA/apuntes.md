@@ -6,13 +6,13 @@
 
 - Son funciones anonimas; es decir, funciones que no tienen nombre
 
---
+---
 
 ## ¿Para qué sirven?
 
 - Sirven para **reducir**, **simplificar** y **abreviar** el codigo en **determinados escenarios**
 
---
+---
 
 ## ¿Cuando se pueden usar?
 
@@ -20,7 +20,7 @@
 - Todo lo qeu hagamos con las **funciones lambda** se puede hacer con una **funcion normal** pero **NO** a la inversa
 - Se les conoce como: **on the go**, **on demand**
 
---
+---
 
 ## Usos
 
