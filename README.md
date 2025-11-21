@@ -1,7 +1,7 @@
 # 🐍 Curso de Python: De Básico a Avanzado
 
 ![Python](https://img.shields.io/badge/Python-3.12.4-blue)
-![Estado](https://img.shields.io/badge/Estado-En%50Desarrollo-yellow)
+![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 Este repositorio contiene un **curso completo de Python**, desde los conceptos más básicos hasta avanzados, ideal para **aprendizaje personal y estudio**.  
