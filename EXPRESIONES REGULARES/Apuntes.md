@@ -306,7 +306,7 @@ for producto in lista_productos:
 
 ```
 
-### Funcion *match* $ *search*
+### Funcion *match* & *search*
 
 - **Match**: Realiza la busqueda al comienzo del termino donde se quere realizar la busqueda
 - **Search**: Realiza la busqueda en todo el *string*
