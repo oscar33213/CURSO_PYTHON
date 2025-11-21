@@ -68,7 +68,12 @@ Puedes clonar el repositorio usando Git:
 git clone https://github.com/oscar33213/CURSO_PYTHON.git
 
 ```
-- Gracias por respetar las normas del repositorio y contribuir al aprendizaje de Python de manera organizada.
+---
 
-- **Author** Óscar Hidalgo Llopez
+## 🙏 Agradecimientos
+Gracias por respetar las normas del repositorio y contribuir al aprendizaje de Python de manera organizada.
+
+---
+
+**Autor:** Óscar Hidalgo
 
