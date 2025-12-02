@@ -237,7 +237,8 @@ miCursor.execute('''
 6. Esperamos a que se descargue
 7. Ejecutamos
 8. En el proceso, indicas una contraseña y un puerto de escucha (Deberas recordarlos o apuntarlos para iniciar las futuras conexiones)
-9. Una vez instalado, buscar *pgAdmin* y ejecutar
+9. En region, indicar la vuestra *(En mi caso Spanish)*
+10. Una vez instalado, buscar *pgAdmin* y ejecutar
 
 ## CONEXION CON POSTGRESQL
 
