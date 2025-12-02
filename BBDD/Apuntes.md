@@ -125,3 +125,147 @@ for p in listaProductos:
 ```
 
 ---
+
+## CAMPO CLAVE
+
+- Identificador unico a cada registro de entrada
+- Para indicar que el campo va a ser **clave** se debera indicar en la creación la instrucción ***PRIMARY KEY***
+
+```python
+
+miCursor.execute('''
+        CREATE TABLE PRODUCTOS_TIENDA(
+        CODARTICULO VARCHAR(4) PRIMARY KEY,
+        NOMBREARTICULO VARCHAR(40),
+        PRECIARTICULO INTEGER,
+        SECCION VARCHAR(20)
+        
+        )
+        
+        ''')
+
+```
+
+- Si se intenta insertar un campo clave repetido, lanzara una excepcion de tipo ***UNIQUE***
+
+```bash
+
+UNIQUE constraint failed: TABLA.CAMPOCLAVE
+
+```
+
+### CAMPO CLAVE AUTOINCREMENTABLE
+
+- Se espera que el campo clave, se autoincremente de manera gradual
+
+```python
+
+miCursor.execute('''
+        CREATE TABLE PRODUCTOS_SUPERMERCADO(
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        ''')
+
+productos = [
+    ('Pasta', 2, 'Legumbres y Pastas'),
+    ('Jabón', 3.45, 'Limpieza y Hogar')
+]
+
+miCursor.executemany('INSERT INTO PRODUCTOS_SUPERMERCADO VALUES (NULL,?,?,?)', productos)
+miConexion.commit()
+
+```
+
+- Al indicar el *AUTOINCREMENT* le indicas que ese campo se incrementara en funcion las entradas
+
+---
+
+## ACTUALIZAR REGISTROS
+
+- **Modificar** campos de registros **YA CREADOS**
+- Si solo se va a actualizar un registro se recomienda hacerlo sobre el campo clave
+
+```python
+
+miCursor.execute('UPDATE NOMBRE_TABLA SET CAMPOAMODIFICAR=NUEVOVALOR WHERE ID=NUMEROCAMPOCLAVE')
+miConexion.commit()
+
+```
+
+## BORRAR REGISTROS
+
+```python
+
+miCursor.execute('DELETE FROM PRODUCTOS_SUPERMERCADO WHERE ID=1')
+miConexion.commit()
+
+```
+
+- La instrucción *DELETE* **SIEMPRE** debera ir junto a su clausula *WHERE* si no se eliminara **TODA** la tabla
+
+---
+
+### CLAUSULA UNIQUE
+
+- Clausula que sirve para que ese campo no se pueda repetir en los registros
+
+```python
+
+miCursor.execute('''
+        CREATE TABLE PRODUCTOS_TIENDA(
+        CODARTICULO VARCHAR(4) PRIMARY KEY,
+        NOMBREARTICULO VARCHAR(40), UNIQUE
+        PRECIARTICULO INTEGER,
+        SECCION VARCHAR(20)
+        
+        )
+        
+        ''')
+
+```
+
+---
+
+## MANEJO DE POSTGRESQL
+
+### INSTALACIÓN DE POSTGRESQL
+
+1. Se requerira descargar *postgresql*, para ello se debera buscar en el navegador
+2. Accedemos a la pagina de *Descargas/Downloads*
+3. Indicamos el **S.O**
+4. Descaragmos el Instalador (*Se encuentra al principio de la pagina*)
+5. Se recomienda descargar la **PENULTIMA** versión
+6. Esperamos a que se descargue
+7. Ejecutamos
+8. En el proceso, indicas una contraseña y un puerto de escucha (Deberas recordarlos o apuntarlos para iniciar las futuras conexiones)
+9. Una vez instalado, buscar *pgAdmin* y ejecutar
+
+## CONEXION CON POSTGRESQL
+
+- Se necesita una libreria de Python llamada *psycopg2*
+- Para instalarla lo ahremos de la siguiente manera:
+
+- Nos desplazamos a la carpeta donde estemos creando las **BBDD**
+
+```bash
+
+cd 'NombreCarpeta'
+
+```
+
+- Ejecuta:
+
+```bash
+
+pip install psycopg2
+
+```
+
+- Importa la libreria
+
+```python
+
+import psycopg2
+
+```
+
+- Si al importar falla, en el buscador buscaremos *'>python select interprete* y lo indicaremos
