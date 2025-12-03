@@ -270,3 +270,55 @@ import psycopg2
 ```
 
 - Si al importar falla, en el buscador buscaremos *'>python select interprete* y lo indicaremos
+
+### ENTRADA DE REGISTRO CON PYTHON Y POSTGRESQL
+
+- Se realizara igual que con *SQLite* con la salvedad de que se le deberan indicar determinados parametros
+
+```python
+
+import psycopg2
+
+miConexion = psycopg2.connect(
+    host='localhost', #Host, al estar operando en local, sera 'localhost'
+    database='BBDD_NOMBRE', #Nombre de la BBDD a la que se quiere conectar
+    user='postgres', #Usuario definido en el Asistente de PostgreSQL (Por defecto, marca 'postgres', si pusiste otro, deberas indicarlo)
+    password='12345', #Contraseña definida por el usuario en el Asistente de PostgreSQL  
+)
+
+miCursor = miConexion.cursor()
+miConexion.execute(
+    "INSERT INTO alumnos (nombre, apellido1, apellido2, curso) VALUES (%s, %s, %s, %s)", #PostgreSQL no admite comillado doble ("") es por eso que es recomendable utilizar '%s'
+    ('ÓSCAR', 'HIDALGO', 'LÓPEZ', 'SEGUNDO')
+)
+
+miConexion.commit()
+miCursor.close()
+miConexion.close()
+
+
+```
+
+---
+
+### SELECT EN POSTGRESQL
+
+```python
+
+cur.execute('SELECT* FROM ALUMNOS')
+
+registros = cur.fetchall()
+
+for p in registros:
+    print(
+        f'Nombre: {p[1]}\n'
+        f'Primer Apellido: {p[2]}\n'
+        f'Segundo Apellido: {p[3]}\n'
+        f'Curso: {p[4]}.\n'
+    )
+
+```
+
+- No es obligado el bucle *for* pero ayuda a dar un vistazo mas ameno
+
+- Eliminar y Actualizar, funciona igual que SQLite
