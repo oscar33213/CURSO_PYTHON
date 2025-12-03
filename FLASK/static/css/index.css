@@ -1,0 +1,20 @@
+body{
+
+    background-color: bisque;
+    
+}
+
+p {
+    color: blueviolet;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1{
+    color: crimson;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

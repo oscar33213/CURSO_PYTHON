@@ -120,3 +120,52 @@ python3 -m venv .venv
 pip install Flask
 
 ```
+
+---
+
+## Manejo de Flask
+
+- Codigo ejemplo
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/')
+
+def holaMundo():
+    
+    return 'Hola a todos'
+
+```
+
+- Para ejecutar cualquier programa de Flask lo haremos mediante la consola
+
+```bash
+
+flask --app NombreArchivo run
+
+```
+
+- Debera aparecer:
+
+```bash
+
+* Serving Flask app 'Nombre'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+127.0.0.1 - - [03/Dec/2025 17:31:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [03/Dec/2025 17:31:59] "GET /favicon.ico HTTP/1.1" 404 -
+
+```
+
+- Ahora una vez comprobado que **Flask** a sido instalado, procedemos a su uso
+
+1. Dentro del directorio, crearemos una carpeta llamada *static*
+2. Dentro de *'static'* crearemos otra carpeta llamada *css* *(Donde ira el .css)*
+3. A su vez en la capeta raiz, crearemos una carpeta llamada *templates* *(Aqui ira el .html)*
+4. Dentro de *'templates'* creamos un archivo HTML al que llamaremos *index.html*
