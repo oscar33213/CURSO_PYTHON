@@ -10,6 +10,7 @@ El curso se desarrolla **a través de [Píldoras Informáticas](https://www.pild
 ---
 
 ## 📑 Tabla de Contenidos
+
 - [🚀 Estado del Proyecto](#-estado-del-proyecto)
 - [📚 Contenido del Curso](#-contenido-del-curso)
   - [1️⃣ Conceptos Básicos](#1️⃣-conceptos-básicos)
@@ -22,6 +23,7 @@ El curso se desarrolla **a través de [Píldoras Informáticas](https://www.pild
 ---
 
 ## 🚀 Estado del Proyecto
+
 > ⚠️ Actualmente, el repositorio se encuentra **en desarrollo**.  
 Se agregarán nuevos contenidos, ejemplos prácticos y ejercicios de manera progresiva.
 
@@ -30,6 +32,7 @@ Se agregarán nuevos contenidos, ejemplos prácticos y ejercicios de manera prog
 ## 📚 Contenido del Curso
 
 ### 1️⃣ Conceptos Básicos
+
 - 📝 Introducción a Python
 - 🔢 Variables y tipos de datos
 - ➕ Operadores
@@ -37,6 +40,7 @@ Se agregarán nuevos contenidos, ejemplos prácticos y ejercicios de manera prog
 - ⚙️ Funciones y módulos
 
 ### 2️⃣ Intermedio
+
 - 📋 Listas, tuplas, diccionarios y sets
 - 📂 Manejo de archivos
 - ⚠️ Manejo de errores y excepciones
@@ -44,36 +48,31 @@ Se agregarán nuevos contenidos, ejemplos prácticos y ejercicios de manera prog
 - 📦 Librerías estándar de Python
 
 ### 3️⃣ Avanzado
-- 🎯 Decoradores y generadores
-- 🔄 Programación funcional
-- 📦 Manejo de paquetes y entornos virtuales
-- ⏱️ Concurrencia y multiprocessing
-- 🗄️ Manejo de bases de datos (SQL y NoSQL)
-- 🤖 Introducción a Inteligencia Artificial (IA) con Python
-- ✅ Buenas prácticas y testing
+
+- 🎯 Decoradores y generadores  
+- 🔄 Programación funcional  
+- 📦 Manejo de paquetes y entornos virtuales  
+- ⏱️ Concurrencia y multiprocessing  
+- 🗄️ Manejo de bases de datos (SQL y NoSQL)  
+- 🤖 Introducción a Inteligencia Artificial (IA) con Python  
+- ✅ Buenas prácticas y testing  
+- 🌐 Manejo de Frameworks como 'Flask'  
+- 📊 Manejo de 'Pandas'  
 
 ---
 
 ## 🛠️ Uso del Repositorio
+
 - ✅ Puedes **utilizar el código** para fines personales y de estudio.
 - 🍴 Se permite **crear forks** del repositorio.
 - ✍️ Si deseas **modificar o mejorar el código**, hazlo **a través de un fork** y envía un Pull Request si lo consideras conveniente.
 
 ---
 
-## 📥 Clonar o Descargar
-Puedes clonar el repositorio usando Git:  
-
-```bash
-git clone https://github.com/oscar33213/CURSO_PYTHON.git
-
-```
----
-
 ## 🙏 Agradecimientos
+
 Gracias por respetar las normas del repositorio y contribuir al aprendizaje de Python de manera organizada.
 
 ---
 
 **Autor:** Óscar Hidalgo Llopez
-
