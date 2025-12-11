@@ -5,43 +5,34 @@ import os
 
 app = Flask(__name__)
 
-empleados = ['Jorge', 'Juan', 'Pedro']
 
 
 @app.route('/')
 
-def holaMundo():
+def PagPrin():
     
-    return render_template('index.html', numeroEmpleados=len(empleados))
+    return render_template('index.html')
 
 @app.route('/quienes')
 
 def quienes():
-    return 'Esta es la pagina de How About You'
-'''
-@app.route('/users/<string:nombreusuario>')
+    return render_template('conocenos.html')
 
-def users(nombreusuario):
-    return 'Bienvenido ' + nombreusuario
+@app.route('/contacto')
+def contacto():
+    return render_template('contacto.html')
 
-'''
+@app.route('/servicios')
 
-@app.route('/users/<int:numeroUser>')
+def servicios():
+    return render_template('servicios.html')
 
-def users(numeroUsuario):
-    return 'Bienvenido usuario nº {} ' .format(numeroUsuario)
+@app.route('/productos')
+
+def productos():
+    return render_template('Productos.html')
 
 
-@app.route('/datosusuario/<int:id>/<string:nombre>')
-
-def datosusuario(id, nombre):
-    return 'Estos son los datos del usuario. Id: {}. Nombre: {}' .format(id, nombre)
-
-@app.route('/posts')
-@app.route('/posts/<int:numpost>')
-
-def posts(numposts='null'):
-    return 'Post nº: {}'.format(numposts)
 
 
 

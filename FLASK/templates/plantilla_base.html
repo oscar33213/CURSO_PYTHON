@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+    <ul id="barra">
+    <li class="elem"><a href="{{ url_for('PagPrin') }}">Inicio</a></li>
+    <li class="elem"><a href="{{ url_for('servicios')}}">Servicios</a></li>
+    <li class="elem"><a href="{{url_for('productos')}}">Productos</a></li>
+    <li class="elem"><a href="{{ url_for('quienes') }}">Conócenos</a></li>
+    <li class="elem"><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+</ul>
+
+
+    {%block content %}
+
+    {% endblock %}
+</body>
+</html>

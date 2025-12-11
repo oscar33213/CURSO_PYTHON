@@ -269,3 +269,117 @@ def posts(numposts='null'):
 
 - En este caso, se indican **2 decoradores** uno de ellos sera el que actue cuando no se reciba un parametro, el segundo cuando lo haga
 - En este caso, el la vista, se le aggregara un parametro por defecto, indicado *(variable='valor_por_defecto')* haciendo que arroje ese valor cuando reciba un parametro innexistente.
+
+---
+
+## Vinculos a vistas
+
+- Podemos crear vinculos que redireccionen a diferentes vistas
+
+```html
+
+<br/>
+
+    <a href="{{'quienes'}}">A la pagina de quienes</a>
+
+```
+
+- En este caso, en el HTML indicamos el nombre de la vista bajo **{{}}**
+
+---
+
+## URL_FOR (Apuntando a vistas y no a URL)
+
+- Funcion de **FLASK** que perimte redireccionar teniendo en cuenta el nombre de la vista y no de la *url*
+- Esto perimte que las *url* se puedan modificar sin verse alterada la vista
+
+```html
+
+<a href="{{url_for('posts')}}">Posts </a>
+
+```
+
+- Se indica el nombre de la vista, no de la *URL*
+
+---
+
+### URL_FOR Con parametros
+
+```html
+
+<a href="{{url_for('posts',numpost=1)}}">Post Nº1 </a>
+
+```
+
+- Los parametros se separaran con **,**
+
+---
+
+## Plantilla Base
+
+- Son las que se usan para marcar el diseño que llevaran todas las paginas
+- Para ello crearemos la plantilla con la siguiente estructura
+
+```html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <title>{% block title %} {% endblock %}</title> 
+</head>
+<body>
+    
+    Contenido que queremos que sea igual en todas las paginas
+
+    {%block content %}
+
+    {% endblock %}
+</body>
+</html>
+
+```
+
+- En la etiqueta `<title>` estamos indicando que esta sera dinamica en función de la pagina donde nos encontremos
+- En el **bloc-content** sera la zona donde ira cada bloque individual
+- Una vez realizada la plantilla base, deberemos extenderla al resto
+
+```html
+
+{% extends "plantilla_base.html" %}
+
+{% block title %} Sobre Nosotros {% endblock %}
+
+{% block content %}
+
+ (El html d ela pagina en si)
+
+{% endblock %}
+
+```
+
+---
+
+## Formularios
+
+```html
+
+<form action="" method="post">
+<label>Nombre: </label>
+<input type="text" id="nombre" name="nombre"/><br/>
+
+<label>Telefono: </label>
+<input type="number" id="numero" name="numero"/><br/>
+
+<label>Email: </label>
+<input type="email" id="email" name="email"/><br/>
+
+<input type="submit" id="envio_form" name="envio_form" value="Enviar"/>
+
+</form>
+
+```
+
+---
