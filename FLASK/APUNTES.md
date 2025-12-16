@@ -477,7 +477,7 @@ class SignupForm(FlaskForm):
 
 ```
 
-- Una vez hecho eso, en la vista dond eeste el formulario,mdeberemos hacer varias modificaciones
+- Una vez hecho eso, en la vista donde este el formulario,mdeberemos hacer varias modificaciones
 
 - Vista antes del **Validator**
 
