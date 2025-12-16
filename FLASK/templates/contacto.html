@@ -4,17 +4,31 @@
 
 {% block content %}
 
-<form action="" method="post">
-<label>Nombre: </label>
-<input type="text" id="nombre" name="nombre"/><br/>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
 
-<label>Telefono: </label>
-<input type="number" id="numero" name="numero"/><br/>
+    {{ form.name.label }}
+    {{ form.name(size=20) }}
+    {% for error in form.name.errors %}
+        <span style="color: red;">{{ error }}</span>
+        <br/>
+    {% endfor %}
 
-<label>Email: </label>
-<input type="email" id="email" name="email"/><br/>
+    {{ form.phoneNumber.label }}
+    {{ form.phoneNumber(size=15) }}
+    {% for error in form.phoneNumber.errors %}
+        <span style="color: red;">{{ error }}</span>
+        <br/>
+    {% endfor %}
 
-<input type="submit" id="envio_form" name="envio_form" value="Enviar"/>
+    {{ form.email.label }}
+    {{ form.email(size=20) }}
+    {% for error in form.email.errors %}
+        <span style="color: red;">{{ error }}</span>
+        <br/>
+    {% endfor %}
 
+    {{ form.submit() }}
 </form>
+
 {% endblock %}

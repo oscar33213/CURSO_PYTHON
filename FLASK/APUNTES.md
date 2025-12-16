@@ -383,3 +383,175 @@ def posts(numposts='null'):
 ```
 
 ---
+
+- Si queremos hacer que los formularios, recojan la información y la almacenen, deberemos autorizarlo en el **decorador** indicando el ``method``
+
+```python
+
+@app.route('/contacto', methods=['GET', 'POST'])
+
+```
+
+- Si estas trabajndo en **Linux** deberas importar una libreria para poder usar ``methods``
+
+```python
+
+from crypt import methods
+
+```
+
+- En **Windows** dara error
+
+---
+
+### Mostrar los datos capturados en el formulario
+
+- Se necesita el uso de ``request``
+- Para ello habra que importarlo
+
+```python
+
+from flask import request
+
+```
+
+- Existen diversas formas de capturar, pero usaremos la mas simple, con sentencia ``if``
+
+```python
+
+@app.route('/contacto', methods=['GET', 'POST'])
+def contacto():
+    if request.method == 'POST':
+        campo1 = request.form['NombreCampo1']
+        campo2 = request.form['NombreCampo2'] #EN EL request.form[] TENDREMOS QUE PONER EL NOMBRE QUE SE LE DIO EN LA PLANTILLA DEL FORMULARIO
+        campo3 = request.form['NombreCampo3']
+
+        return redirect(url_for('PagPrin'))
+        
+        
+    return render_template('contacto.html')
+
+```
+
+---
+
+### Validación de formularios
+
+- Se usa para verificar que los campos han sido **rellenados** de manera correcta
+- Para ello se usaran **dos librerias**
+  - *Flask-WTF* [Documentación_Flask] (<https://flask-wtf.readthedocs.io/en/1.2.x/>)
+  - *email validator*
+- Se requiere previamnete que se instalen
+
+```bash
+pip install Flask-WTF
+
+//
+
+pip install email-validator
+
+```
+
+- **Flask-WTF** tiene protección para ataques de [CSRF] (<https://www.fortinet.com/lat/resources/cyberglossary/csrf>)
+
+- Para usuarlo, seguirmos los siguientes pasos:
+
+1. A la altura donde ese encuentre nuestra app principal, crearemos un archivo **.py** llamado *forms.py*
+2. Dentro de el archivo crearemos el sigueinte codigo:
+
+```python
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, EmailField, IntegerField
+from wtforms.validators import DataRequired, Email, Length
+
+
+class SignupForm(FlaskForm):
+    name = StringField('nombreUser', validators=[DataRequired(), Length(max=50)])
+    phoneNumber = IntegerField('numeroUser', validators=[DataRequired(), Length(max=12)])
+    email = EmailField('emailUser', validators=[DataRequired(), Length(max=50), Email()])
+    
+    submit = SubmitField('envio_form')
+
+```
+
+- Una vez hecho eso, en la vista dond eeste el formulario,mdeberemos hacer varias modificaciones
+
+- Vista antes del **Validator**
+
+```python
+@app.route('/contacto', methods=['GET', 'POST'])
+def contacto():
+    if request.method == 'POST':
+        campo1 = request.form['NombreCampo1']
+        campo2 = request.form['NombreCampo2'] #EN EL request.form[] TENDREMOS QUE PONER EL NOMBRE QUE SE LE DIO EN LA PLANTILLA DEL FORMULARIO
+        campo3 = request.form['NombreCampo3']
+
+        return redirect(url_for('PagPrin'))
+        
+        
+    return render_template('contacto.html')
+
+```
+
+- Vista **DESPUES** del **Validator**
+
+```python
+
+from forms import SignupForm
+
+app.config['SECRET_KEY']='TUCONTRASEÑA'
+
+@app.route('/contacto', methods=['GET', 'POST'])
+def contacto():
+    form = SignupForm()
+    if form.validate_on_submit():
+        nombreUser = form.name.data
+        numeroUser = form.phoneNumber.data
+        emailUser = form.email.data
+        
+        numero_oculto = "*****" + numeroUser[-4:]
+        email_oculto = '*' * (len(emailUser)- 4) + emailUser[-4]
+        
+        
+        
+        return redirect(url_for('PagPrin'))
+        
+        
+    return render_template('contacto.html', form=form)
+```
+
+- Ahora cogera la información de los campos del archivo *forms.py*
+
+- Deberemos modificar la plantilla:
+
+```html
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    {{ form.name.label }}
+    {{ form.name(size=20) }}
+    {% for error in form.name.errors %}
+        <span style="color: red;">{{ error }}</span>
+        
+    {% endfor %}
+    <br/>
+
+    {{ form.phoneNumber.label }}
+    {{ form.phoneNumber(size=15) }}
+    {% for error in form.phoneNumber.errors %}
+        <span style="color: red;">{{ error }}</span>
+        
+    {% endfor %}
+    <br/>
+    {{ form.email.label }}
+    {{ form.email(size=20) }}
+    {% for error in form.email.errors %}
+        <span style="color: red;">{{ error }}</span>
+        
+    {% endfor %}
+    <br/>
+    {{ form.submit() }}
+</form>
+
+```
