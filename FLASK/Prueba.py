@@ -76,7 +76,6 @@ def PagPosts():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-#TODO ARREGLAR FALLOS
 def login():
     
     if current_user.is_authenticated:
@@ -84,11 +83,11 @@ def login():
     
     form = PostLogin()
     
-    if form.validate_on_submit:
-        user = get_user(form.email.data)
+    if form.validate_on_submit():
+        user = get_user(form.User.data)
         
         if user is not None and user.check_password(form.Password.data):
-            load_user(user, remember = form.remember_me.data)
+            load_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next')
             if not next_page:
                 next_page = url_for('PagPrin')
