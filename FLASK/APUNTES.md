@@ -616,3 +616,57 @@ class User(UserMixin):
 
 - Una vez en el archivo de las vistas, crearemos lo sigueinte:
 
+```python
+
+@login_manager.user_loader
+
+def load_user(user_id):
+    for user in users:
+        if user.id == int(user_id):
+            return user
+    return None
+
+```
+
+- Modificaremos la vista del Login
+
+```python
+from flask_login import LoginManager, current_user
+from models import users, get_user
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    
+    if current_user.is_authenticated:
+        return redirect(url_for('PagPrin'))
+    
+    form = PostLogin()
+    
+    if form.validate_on_submit():
+        user = get_user(form.User.data)
+        
+        if user is not None and user.check_password(form.Password.data):
+            load_user(user, remember=form.remember_me.data)
+            next_page = request.args.get('next')
+            if not next_page:
+                next_page = url_for('PagPrin')
+            return redirect(next_page)
+
+    return render_template('login.html', form=form)
+```
+
+- En *models.py* crearemos lo siguiente
+
+```python
+users =  []
+
+
+def get_user(email):
+    for user in users:
+        if user.email == email:
+            return user
+    return None
+```
+
+- **¡¡¡Esto es solo para capturar los registrsos de sesión en una lista, la version final se vera cuando implementemos una BBDD!!!**
+
+'''

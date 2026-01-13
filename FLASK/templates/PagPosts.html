@@ -5,7 +5,18 @@
 {% block content %}
 <h1>Posts</h1>
 
-<a href="{{ url_for('posts') }}" class="btn btn-secondary mb-3">Crear nuevo post</a>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    {{ form.Post.label }}
+    {{ form.Post }}
+    {% for error in form.Post.errors %}
+        <span style="color: red;">{{ error }}</span><br/>
+    {% endfor %}
+    <br/>
+    {{ form.Submit() }}
+</form>
+
+<hr>
 
 {% if posts %}
 <div id="postsCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -13,8 +24,9 @@
         {% for post in posts %}
         <div class="carousel-item {% if loop.first %}active{% endif %}">
             <div class="d-block w-100 p-4 bg-light rounded">
-                <h5>{{ post.autor }}</h5>
+                <h5>Autor: {{ post.autor }}</h5>
                 <p>{{ post.contenido }}</p>
+                <small class="text-muted">{{ post.fecha.strftime('%d/%m/%Y %H:%M:%S') }}</small>
             </div>
         </div>
         {% endfor %}
@@ -24,15 +36,4 @@
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Anterior</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#postsCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Siguiente</span>
-    </button>
-</div>
-{% else %}
-<p>No hay posts aún.</p>
-{% endif %}
-
-<a href="{{ url_for('PagPrin') }}" class="btn btn-secondary mt-3">Volver</a>
-{% endblock %}
-
+    <button class="carousel-control

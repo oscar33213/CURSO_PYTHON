@@ -17,16 +17,42 @@
 </head>
 <body>
     <!-- Barra de navegación -->
-    <ul id="barra">
-        <li class="elem"><a href="{{ url_for('PagPrin') }}">Inicio</a></li>
+<ul id="barra">
+    <li class="elem"><a href="{{ url_for('PagPrin') }}">Inicio</a></li>
+
+    {% if not current_user.is_authenticated %}
         <li class="elem"><a href="{{ url_for('login') }}">Logeate</a></li>
         <li class="elem"><a href="{{ url_for('registrate') }}">Registrate</a></li>
-        <li class="elem"><a href="{{ url_for('servicios') }}">Servicios</a></li>
-        <li class="elem"><a href="{{ url_for('productos') }}">Productos</a></li>
-        <li class="elem"><a href="{{ url_for('posts') }}">Posts</a></li>
-        <li class="elem"><a href="{{ url_for('quienes') }}">Conócenos</a></li>
-        <li class="elem"><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
-    </ul>
+    {% endif %}
+
+    <li class="elem"><a href="{{ url_for('servicios') }}">Servicios</a></li>
+    <li class="elem"><a href="{{ url_for('productos') }}">Productos</a></li>
+    <li class="elem"><a href="{{ url_for('posts') }}">Posts</a></li>
+    <li class="elem"><a href="{{ url_for('quienes') }}">Conócenos</a></li>
+    <li class="elem"><a href="{{ url_for('contacto') }}">Contáctanos</a></li>
+
+    {% if current_user.is_authenticated %}
+        <li class="elem"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+    {% endif %}
+</ul>
+
+    <div>
+
+
+        <ul style="list-style: none;">
+            {% if current_user.is_anonymous %}
+            <li>Sin Sesión</li>
+            {% else %}
+
+            <li>Hola: {{current_user.name}}</li>
+
+            {% endif %}
+
+        </ul>
+
+
+
+    </div>
 
     <!-- Contenido principal -->
     <div class="container mt-4">
