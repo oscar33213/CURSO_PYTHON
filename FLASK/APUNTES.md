@@ -557,3 +557,62 @@ def contacto():
 </form>
 
 ```
+
+## Capturar el Usuario
+
+- Se puede crear un sistema de **Login** y **Registro** para limitar accesos a ciertas zonas
+- Para ello nos apoyaremos en una libreria llamada **Flask-Login** la cual deberemos instalar
+
+### Instalar flask-login
+
+```bash
+cd carpetaProyectoFlask
+pip install flask-login
+```
+
+- Se recomienda paarar elservidor y reiniciar VSCode
+
+## LoginManager
+
+- Es la clase que permitira operar con los inicios de sesion
+- Se creara una instancia que sera accesible desde cualquier punto de la pagina
+
+```python
+
+from flask_login import LoginManager
+app = Flask(__name__)
+
+app.config['SECRET_KEY']=''
+
+login_manager = LoginManager(app)
+
+```
+
+- Deberemos crear una clase Usuario
+- Para que funcione necestaremos tener registardas una serie de propiedades
+- Para ello, dentro d ela carpeta raiz del pryecto, crearemos un archivo llaamdo *models.py*
+- Dentro de *models.py* crearemos la clase Usuario
+
+```python
+from flask_login import UserMixin
+
+from werkzeug.security import generate_password_hash, check_password_hash
+
+class User(UserMixin):
+    def __init__(self, id, name, email, passwd, is_admin=False):
+        
+        self.id = id
+        self.name = name
+        self.email = email
+        self.passwd = passwd
+        self.is_admin = is_admin
+        
+    def setPassword(self, passwd):
+        self.passwd = generate_password_hash(passwd)
+        
+    def check_password(self, passwd):
+        return check_password_hash(self.passwd,passwd)
+```
+
+- Una vez en el archivo de las vistas, crearemos lo sigueinte:
+

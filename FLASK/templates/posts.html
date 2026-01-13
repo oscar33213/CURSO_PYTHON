@@ -1,0 +1,78 @@
+{% extends "plantilla_base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<h1>Crear Post</h1>
+
+<!-- Formulario -->
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+
+    <!-- Autor -->
+    <div class="mb-3">
+        {{ form.Autor.label }}<br>
+        {{ form.Autor(size=30, class_="form-control") }}
+        {% for error in form.Autor.errors %}
+            <span class="text-danger">{{ error }}</span><br>
+        {% endfor %}
+    </div>
+
+    <!-- Contenido del post -->
+    <div class="mb-3">
+        {{ form.Post.label }}<br>
+        {{ form.Post(
+            class_="form-control",
+            rows=8,
+            maxlength=300,
+            id="postArea"
+        ) }}
+        <small id="charCount" class="text-muted">
+            300 caracteres restantes
+        </small>
+        {% for error in form.Post.errors %}
+            <span class="text-danger">{{ error }}</span><br>
+        {% endfor %}
+    </div>
+
+    <!-- Botón enviar -->
+    <div class="mb-3">
+        {{ form.BotonEnviar(class_="btn btn-primary") }}
+    </div>
+</form>
+
+<!-- Lista de posts -->
+<h2 class="mt-5">Todos los Posts</h2>
+
+{% if posts %}
+    {% for post in posts|reverse %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.autor }}</h5>
+                <p class="card-text">{{ post.contenido }}</p>
+                <p class="text-muted">
+                    Publicado: {{ post.fecha.strftime('%d/%m/%Y %H:%M') }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No hay posts aún.</p>
+{% endif %}
+
+<a href="{{ url_for('PagPrin') }}" class="btn btn-primary mt-3">Volver</a>
+
+<!-- Script contador de caracteres -->
+<script>
+    const textarea = document.getElementById('postArea');
+    const counter = document.getElementById('charCount');
+    const maxChars = 500;
+
+    textarea.addEventListener('input', () => {
+        const remaining = maxChars - textarea.value.length;
+        counter.textContent = remaining + " caracteres restantes";
+    });
+</script>
+
+{% endblock %}
+

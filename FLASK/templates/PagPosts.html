@@ -1,0 +1,38 @@
+{% extends "plantilla_base.html" %}
+
+{% block title %}Todos los Posts{% endblock %}
+
+{% block content %}
+<h1>Posts</h1>
+
+<a href="{{ url_for('posts') }}" class="btn btn-secondary mb-3">Crear nuevo post</a>
+
+{% if posts %}
+<div id="postsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for post in posts %}
+        <div class="carousel-item {% if loop.first %}active{% endif %}">
+            <div class="d-block w-100 p-4 bg-light rounded">
+                <h5>{{ post.autor }}</h5>
+                <p>{{ post.contenido }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#postsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#postsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+{% else %}
+<p>No hay posts aún.</p>
+{% endif %}
+
+<a href="{{ url_for('PagPrin') }}" class="btn btn-secondary mt-3">Volver</a>
+{% endblock %}
+

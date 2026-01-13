@@ -7,28 +7,35 @@
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
 
-    {{ form.name.label }}
-    {{ form.name(size=20) }}
-    {% for error in form.name.errors %}
+    {{ form.Nombre.label }}
+    {{ form.Nombre(size=20) }}
+    {% for error in form.Nombre.errors %}
         <span style="color: red;">{{ error }}</span>
         <br/>
     {% endfor %}
 
-    {{ form.phoneNumber.label }}
-    {{ form.phoneNumber(size=15) }}
-    {% for error in form.phoneNumber.errors %}
+    {{ form.Telefono.label }}
+    {{ form.Telefono(size=20) }}
+    {% for error in form.Telefono.errors %}
         <span style="color: red;">{{ error }}</span>
         <br/>
     {% endfor %}
 
-    {{ form.email.label }}
-    {{ form.email(size=20) }}
-    {% for error in form.email.errors %}
+    {{ form.Email.label }}
+    {{ form.Email(type="email", size=20) }}
+    {% for error in form.Email.errors %}
         <span style="color: red;">{{ error }}</span>
         <br/>
     {% endfor %}
 
-    {{ form.submit() }}
+    {{ form.Mensaje.label }}
+    {{ form.Mensaje(size=20) }}
+    {% for error in form.Mensaje.errors %}
+        <span style="color: red;">{{ error }}</span>
+        <br/>
+    {% endfor %}
+
+    {{ form.submit(class_="btn btn-primary") }}
 </form>
 
 {% endblock %}

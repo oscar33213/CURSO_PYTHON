@@ -1,0 +1,36 @@
+{% extends "plantilla_base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <form action="" method="post" novalidate>
+
+        {{ form.hidden_tag() }}
+
+    {{form.User.label}}
+    {{form.User}}
+    {% for error in form.User.errors %}
+    <span style="color: red;">{{ error }}</span>
+    <br/>
+    {% endfor %}
+    <br/>
+
+
+    {{form.Password.label}}
+    {{form.Password}}
+    {% for error in form.Password.errors %}
+    <span style="color: red;">{{ error }}</span>
+    <br/>
+    {% endfor %}
+    <br/>
+
+    {{ form.remember_me() }} {{ form.remember_me.label}}
+    <br/>
+
+
+    {{form.Logear()}}
+
+
+{% endblock %}
+
