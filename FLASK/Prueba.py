@@ -4,11 +4,18 @@ from datetime import datetime
 from forms import ContactForm, PostForm, PostLogin, RegisterIDPost
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from models import User, users, get_user
+from flask_sqlalchemy import SQLAlchemy
+
+
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY']='OscarHidalgo#332199713'
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5433/proyectoflask'
+
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 login_manager = LoginManager(app)
 
@@ -16,7 +23,7 @@ login_manager.login_view = 'login'
 
 posts_guardados = []
 
-
+database = SQLAlchemy(app)
 @app.route('/')
 
 def PagPrin():
@@ -138,5 +145,10 @@ def logout():
     return redirect(url_for('PagPrin'))
 
 if __name__ == "__main__":
-    os.environ['FLASK_ENV'] = 'development'
-    app.run(debug = True)
+    app.config["ENV"] = "development"
+
+    with app.app_context():
+        database.create_all()
+
+    app.run(debug=True)
+

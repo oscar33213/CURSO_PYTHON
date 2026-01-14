@@ -670,3 +670,46 @@ def get_user(email):
 - **¡¡¡Esto es solo para capturar los registrsos de sesión en una lista, la version final se vera cuando implementemos una BBDD!!!**
 
 '''
+
+## IMPLEMENTACIÓN DE BBDD EN FLASK
+
+- Para poder trabajar con un SGBBD (En este caso *PostgreSQL*) deberemos realizar una serie de pasos:
+- Instalar un paquete en VS CODE
+
+```bash
+pip install flask-sqlalchemy
+```
+
+- Esto permitira la conexion a la BBDD
+- Una vez realizado esta instalación, deberemos descargar PostgreSQL (Si no lo tenemos)
+- Una vez instalado, buscamos PGAdmin en Windows
+- Deveremos instalar otro paquete
+
+```bash
+pip install psycopg2
+
+```
+
+- Ahora en app.py deberemos importar la libreria
+
+```python
+
+from flask_sqlalchemy import SQLAlchemy
+
+```
+
+- Ahora deberemos introducir la ruta de PostGreeSQL en *app.py*
+
+```python
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:contraseña@localhost:puerto/nombrebbdd'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #PERMITE QUE CUANDO HAGAMOS MODIFICACIONES EN LAS BBDD, EMITA UNA SEÑAL
+database = SQLAlchemy(app)
+
+```
+
+'''
+
+## CONEXION CON LA BBDD - FLASK
+
+### USO DE ORM (OBJECT RELATIONAL MODEL)
