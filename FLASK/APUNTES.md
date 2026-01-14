@@ -753,7 +753,7 @@ def load_user(user_id):
 ```
 
 - Necesitamos que cuando la app se inicie, esta cree las tablas, esto lo haremos de la siguiente manera
-- en *app.py*
+- En *app.py*
 
 ```python
 @app.before_first_request
@@ -791,7 +791,8 @@ def registrate():
     
     return render_template('registrate.html', form=form)
 
-    ```
+```
+
 - Aquie crearemos la ventana de Registro
 - Para crear la ventana de login y que esta rescate de la *BBDD* lo haremos de la siguiente manera
 
