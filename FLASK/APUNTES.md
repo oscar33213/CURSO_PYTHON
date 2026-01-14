@@ -713,3 +713,107 @@ database = SQLAlchemy(app)
 ## CONEXION CON LA BBDD - FLASK
 
 ### USO DE ORM (OBJECT RELATIONAL MODEL)
+
+- Es la acción de usar los registros de las BBDD usando la regla de los Objetos con los **pradigamas de la POO**
+
+- En *models.py* deberemos crear el constructor
+
+```python
+from flask_login import UserMixin, LoginManager
+login_manager = LoginManager()
+class User(UserMixin, db.Model):
+    
+    __tablename__ = 'Usuarios_pagina'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String(80), unique = True, nullable = False)
+    email = db.Column(db.String(80), unique = True, nullable = False)
+    password = db.Column(db.String(80), nullable = False)
+    is_admin = db.Column(db.Boolean, default = False)
+        
+    def setPassword(self, password):
+        self.passwd = generate_password_hash(password)
+        
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+```
+
+- En el archivo *app.py* deberemos añadir una serie de variables
+
+```python
+
+    login_manager.init_app(app)
+
+    db.init_app(app)
+```
+
+- Necesitamos que cuando la app se inicie, esta cree las tablas, esto lo haremos de la siguiente manera
+- en *app.py*
+
+```python
+@app.before_first_request
+def create_table():
+    db.create_all()
+```
+
+## Modificación de una vista
+
+```python
+@app.route('/registrate', methods=['GET', 'POST'])
+def registrate():
+    
+    if current_user.is_authenticated:
+        return redirect(url_for('PagPrin'))
+    
+    form = RegisterIDPost()
+    
+    if form.validate_on_submit():
+        
+        usuario = form.User.data
+        email = form.Email.data
+        password = form.Password.data
+        remember = form.remember_me.data
+        
+        user = User(email = email, user = usuario)
+        user.setPassword(password)
+        
+        
+        #login_user(user, remember=remember)
+        
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('login'))
+    
+    return render_template('registrate.html', form=form)
+
+    ```
+- Aquie crearemos la ventana de Registro
+- Para crear la ventana de login y que esta rescate de la *BBDD* lo haremos de la siguiente manera
+
+```python
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    
+    if current_user.is_authenticated:
+        return redirect(url_for('PagPrin'))
+    
+    form = PostLogin()
+    
+    if form.validate_on_submit():
+        usuario = request.form['user'] # Rescatamos de la columna 'Usuario'
+        userTrue = User.query.filter_by(user=usuario).first() #Buscamos si existe ese usuario en la BBDD
+        
+        if userTrue is not None and userTrue.check_password(request.form['password']): #Si existe, logueamos
+            login_user(userTrue)
+            
+    
+    
+
+    return render_template('login.html', form=form)
+
+```

@@ -3,8 +3,9 @@ import os
 from datetime import datetime
 from forms import ContactForm, PostForm, PostLogin, RegisterIDPost
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
-from models import User, users, get_user
+from models import User, db, login_manager
 from flask_sqlalchemy import SQLAlchemy
+
 
 
 
@@ -17,13 +18,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-login_manager = LoginManager(app)
+login_manager.init_app(app)
+
+db.init_app(app)
 
 login_manager.login_view = 'login'
 
+@app.before_first_request
+def create_table():
+    db.create_all()
+
 posts_guardados = []
 
-database = SQLAlchemy(app)
+
 @app.route('/')
 
 def PagPrin():
@@ -95,19 +102,22 @@ def login():
     form = PostLogin()
     
     if form.validate_on_submit():
-        user = get_user(form.User.data)
+        usuario = request.form['user']
+        userTrue = User.query.filter_by(user=usuario).first()
         
-        if user is not None and (user.check_password(form.Password.data) == form.Password.data):
-            login_user(user, remember=form.remember_me.data)
-            next_page = request.args.get('next')
-            if not next_page:
-                next_page = url_for('PagPrin')
-            return redirect(next_page)
+        if userTrue is not None and userTrue.check_password(request.form['password']):
+            login_user(userTrue)
+            
+    
+    
 
     return render_template('login.html', form=form)
 
 @app.route('/registrate', methods=['GET', 'POST'])
 def registrate():
+    
+    if current_user.is_authenticated:
+        return redirect(url_for('PagPrin'))
     
     form = RegisterIDPost()
     
@@ -118,24 +128,22 @@ def registrate():
         password = form.Password.data
         remember = form.remember_me.data
         
-        # Cambiar 'user' por 'users' para contar cuantos hay
-        user = User(len(users) + 1, usuario, email, password)
-        users.append(user)
-        login_user(user, remember=remember)  # load_user → login_user
-        return redirect(url_for('PagPrin'))
+        user = User(email = email, user = usuario)
+        user.setPassword(password)
+        
+        
+        #login_user(user, remember=remember)
+        
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('login'))
     
     return render_template('registrate.html', form=form)
 
 
 
 
-@login_manager.user_loader
 
-def load_user(user_id):
-    for user in users:
-        if user.id == int(user_id):
-            return user
-    return None
 
 
 @app.route('/logout')
@@ -148,7 +156,7 @@ if __name__ == "__main__":
     app.config["ENV"] = "development"
 
     with app.app_context():
-        database.create_all()
+        db.create_all()
 
     app.run(debug=True)
 

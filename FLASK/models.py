@@ -1,31 +1,29 @@
 
-from flask_login import UserMixin
 
+from flask_login import UserMixin, LoginManager
+
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(UserMixin):
-    def __init__(self, id, name, email, passwd, is_admin=False):
-        
-        self.id = id
-        self.name = name
-        self.email = email
-        self.passwd = passwd
-        self.is_admin = is_admin
-        
-    def setPassword(self, passwd):
-        self.passwd = generate_password_hash(passwd)
-        
-    def check_password(self, passwd):
-        #return check_password_hash(self.passwd,passwd)
-        return self.passwd
+db = SQLAlchemy()
+login_manager = LoginManager()
+
+class User(UserMixin, db.Model):
     
+    __tablename__ = 'Usuarios_pagina'
     
+    id = db.Column(db.Integer, primary_key=True)
+    user = db.Column(db.String(80), unique = True, nullable = False)
+    email = db.Column(db.String(80), unique = True, nullable = False)
+    password = db.Column(db.String(80), nullable = False)
+    is_admin = db.Column(db.Boolean, default = False)
+        
+    def setPassword(self, password):
+        self.passwd = generate_password_hash(password)
+        
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
-users =  []
 
 
-def get_user(email):
-    for user in users:
-        if user.email == email:
-            return user
-    return None
+
