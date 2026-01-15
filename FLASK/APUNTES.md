@@ -728,7 +728,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user = db.Column(db.String(80), unique = True, nullable = False)
     email = db.Column(db.String(80), unique = True, nullable = False)
-    password = db.Column(db.String(80), nullable = False)
+    password = db.Column(db.String(255), nullable = False) #OJO! AQUI GAURDA EL HASH, POR ESO ES RECOMENDABLE DAR EL MAXIMO LIMITE DE CARACTERES 
     is_admin = db.Column(db.Boolean, default = False)
         
     def setPassword(self, password):
