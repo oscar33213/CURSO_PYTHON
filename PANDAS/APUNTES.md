@@ -1,6 +1,6 @@
-# PANDAS
+# PANDAS🐼
 
-## ¿QUÉ ES PANDAS?
+## ¿QUÉ ES PANDAS?❓
 
 - Proviene del nombre **Pan**el **Da**ta
 - Libreria de codigo abierto usada por cientificos y analistas de datos
@@ -22,7 +22,7 @@
 
 '''
 
-## USO DE PANDAS
+## USO DE PANDAS⛏️
 
 - Para empezar a usar **Pandas** deberemos tener instalda su libreria pertinente
 - Para comprobarlo (si nunca lo has usado, lo logico es no tenerlo) en un arhivo *.py* importaremos
