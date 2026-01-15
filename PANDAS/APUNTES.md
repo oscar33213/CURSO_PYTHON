@@ -57,4 +57,11 @@ falcon         2          2
 dog            4          0
 ```
 
-'''
+- El manejo de **DataFrame** nos permite:
+
+  - Carga de datos de diferentes origenes
+  - No permite trabajar asemejandonos a una tabla dinamica
+  - Tranformación de datos
+  - Calculos por **filas** y/o **columnas**
+  - Analisis de datos visuales *(Graficos, lineas...)*
+  - Exportaciones de datos
